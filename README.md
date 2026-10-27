@@ -2,9 +2,15 @@
 
 AutoPlant is an Arduino-based plant monitoring and watering project. The firmware reads soil moisture and environmental conditions, exposes readings over Bluetooth Low Energy (BLE), and can control a solenoid watering valve.
 
+The repository also contains the initial Android application frame that will be used to build the mobile interface for the plant system.
+
 ## Repository Layout
 
 ```text
+app/                         Android application module
+gradle/                      Gradle wrapper and version catalog
+build.gradle.kts             Root Android build configuration
+settings.gradle.kts          Android project settings
 arduino/
   AllWorkingOptimisedNoSleep/  Recommended integrated firmware
   WORKINGsensesolBLE/          BLE sensing and solenoid variant
@@ -15,6 +21,12 @@ arduino/
 ```
 
 See [arduino/README.md](arduino/README.md) for the complete sketch inventory.
+
+## Android Application
+
+The Android project is a Java and XML AppCompat application using the `com.example.autoplant` namespace. Its current activity is the original BLE implementation with scan/connect controls, queued sensor reads, and pump control.
+
+Open the repository root in Android Studio and let Gradle sync before adding application features. The local `local.properties` file is intentionally not copied into the repository because it contains machine-specific Android SDK paths.
 
 ## Recommended Firmware
 
@@ -48,8 +60,8 @@ Verify wiring, board selection, voltage levels, and calibration values before po
 4. Select the correct board and serial port.
 5. Upload the sketch and open the serial monitor to inspect sensor readings and BLE status.
 
-The repository does not currently include `arduino-cli` configuration or an automated build. Compilation should therefore be performed in the Arduino IDE until the target board and library versions are formalized.
+The repository does not currently include `arduino-cli` configuration or an automated Arduino build. Compilation should therefore be performed in the Arduino IDE until the target board and library versions are formalized. The Android app can be built with `./gradlew :app:assembleDebug` on systems with a configured JDK and Android SDK.
 
 ## Development Notes
 
-The `arduino/` directory preserves the original sketches as separate experiments. Changes to one sketch should not be assumed to apply to the others. The integrated sketch is the best base for future cleanup, calibration, and application-level BLE integration.
+The `arduino/` directory preserves the original sketches as separate experiments. Changes to one sketch should not be assumed to apply to the others. The integrated sketch is the best base for future cleanup, calibration, and application-level BLE integration. The Android app is intentionally still a frame so the BLE data contract and primary user flows can be designed around the chosen firmware.

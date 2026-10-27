@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AutoPlant</string>
+    <string name="scan_connect">Scan and connect</string>
+    <string name="temp_placeholder">Temperature: --</string>
+    <string name="moisture_placeholder">Moisture: --</string>
+    <string name="humidity_placeholder">Humidity(air): --</string>
+    <string name="pressure_placeholder">Pressure: --</string>
+    <string name="light_placeholder">Light: --</string>
+    <string name="toggle_pump">Toggle pump</string>
+</resources>
